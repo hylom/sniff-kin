@@ -8,7 +8,7 @@ const SNIFF_CONFIG = 'sniff.config.js';
 
 async function main() {
   if (process.argv[2] == 'init') {
-    createConfig();
+    await createConfig();
     logger.info(`create ${SNIFF_CONFIG}. Please edit it.`);
     return;
   }

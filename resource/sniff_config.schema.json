@@ -1,0 +1,49 @@
+{
+  "title": "sniffkin configuration file",
+  "type": "object",
+  "required": [ "targets", "network" ],
+  "properties": {
+    "targets": {
+      "priority": 10,
+      "type": "array",
+      "description": "domains to sniff",
+      "items": {
+        "type": "string"
+      }
+    },
+    "network": {
+      "priority": 20,
+      "type": "object",
+      "description": "network related settings",
+      "required": [ "externalIpAddress", "bind" ],
+      "properties": {
+        "externalIpAddress": {
+          "priority": 10,
+          "type": "object",
+          "description": "IP address to expose the server",
+          "properties": {
+            "network": {
+              "priority": 10,
+              "type": "string",
+              "description": "IPv4 network address to expose the server",
+              "examples": [ "192.168.1.0/24" ]
+            }
+          }
+        },
+        "bind": {
+          "priority": 20,
+          "type": "string",
+          "description": "IPv4 address to bind the server",
+          "examples": [ "192.168.1.10" ],
+          "default": "0.0.0.0"
+        }
+      }
+    },
+    "plugins": {
+      "priority": 100,
+      "type": "array",
+      "description": "plugins to load",
+      "default": []
+    }
+  }
+}
