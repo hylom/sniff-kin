@@ -49,15 +49,15 @@ export function DetailedLog(props) {
   });
 
   return (
-    <div className="w-full text-sm">
+    <div className="w-full text-sm py-4">
       <Expandable title={titles.general}>
         <ul>{generalItems}</ul>
       </Expandable>
-      <Expandable title={titles.responseHeaders}>
-        <ul>{responseHeaders}</ul>
-      </Expandable>
       <Expandable title={titles.requestHeaders}>
         <ul>{requestHeaders}</ul>
+      </Expandable>
+      <Expandable title={titles.responseHeaders}>
+        <ul>{responseHeaders}</ul>
       </Expandable>
     </div>
   );
