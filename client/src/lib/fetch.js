@@ -1,5 +1,6 @@
+import { baseUrl } from './base-url';
 
-const serverEndpoint = 'http://localhost:8080/api';
+const serverEndpoint = `${baseUrl()}api`;
 
 function createError(type, message, cause={}) {
   if (type === 'INVALID_RESPONSE') {
