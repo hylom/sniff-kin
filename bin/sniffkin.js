@@ -9,7 +9,6 @@ const SNIFF_CONFIG = 'sniff.config.js';
 async function main() {
   if (process.argv[2] == 'init') {
     await createConfig();
-    logger.info(`create ${SNIFF_CONFIG}. Please edit it.`);
     return;
   }
   start();
@@ -18,7 +17,7 @@ async function main() {
 async function start() {
   const configPath = path.join(process.cwd(), SNIFF_CONFIG);
   try {
-    const stat = await fs.promises.lstat(configPath);
+    const stat = await fs.promises.stat(configPath);
     if (!stat.isFile()) {
       logger.error(`${SNIFF_CONFIG} exists but it is not regular file!`);
       process.exit(10);
