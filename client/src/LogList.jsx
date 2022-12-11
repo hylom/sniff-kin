@@ -49,7 +49,7 @@ function formatLog(item, options) {
       <td className={cellClass}>{item.requestMethod}</td>
       <td className={cellClass + " max-w-md truncate"}>
         {item.requestUrl}</td>
-      <td className={cellClass}>{item.responseHeaders['content-type']}</td>
+      <td className={cellClass}>{item.responseHeaders ? item.responseHeaders['content-type'] : ''}</td>
       <td className={cellClass}>{item.responseStatusCode}</td>
     </tr>
   );

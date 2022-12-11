@@ -23,6 +23,7 @@ export function DetailedLog(props) {
   }
 
   const item = parseLog(log);
+
   const generalItems =  Object.keys(item.general).map(key => {
     return (
       <li key={key}>
@@ -31,14 +32,19 @@ export function DetailedLog(props) {
       </li>
     );
   });
-  const responseHeaders = Object.keys(item.responseHeaders).map(key => {
-    return (
-      <li key={key}>
-        <span className="font-bold">{key}</span>:
-        <span>{item.responseHeaders[key]}</span>
-      </li>
-    );
-  });
+
+  let responseHeaders = [];
+  if (item.responseHeaders) {
+    responseHeaders = Object.keys(item.responseHeaders).map(key => {
+      return (
+        <li key={key}>
+          <span className="font-bold">{key}</span>:
+          <span>{item.responseHeaders[key]}</span>
+        </li>
+      );
+    });
+  }
+
   const requestHeaders = Object.keys(item.requestHeaders).map(key => {
     return (
       <li key={key}>
