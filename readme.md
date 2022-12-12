@@ -8,4 +8,3 @@ $ npm run init-config
 $ npm start
 ```
 
-

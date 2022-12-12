@@ -1,19 +1,35 @@
 {
   "name": "sniffkin",
-  "version": "0.2.0",
-  "description": "",
+  "version": "0.3.3",
+  "description": "MITM connection sniffer proxy framework",
   "type": "module",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node bin/sniffkin.js",
-    "init-config": "node bin/sniffkin.js init"
+    "init": "node bin/sniffkin.js init"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [ "network" ],
+  "author": {
+    "name": "hylom (Hiromichi Matsushima)",
+    "email": "hylom@hylom.net"
+  },
+  "files": [
+    "bin/*.js",
+    "client/build/**",
+    "lib/**/*.js",
+    "resource/*.json",
+    "types/*.ts",
+    "readme.md",
+    "license.txt",
+    "index.js",
+    "index.d.ts"
+  ],
+  "bin": {
+    "sniffkin": "bin/sniffkin.js"
+  },
+  "license": "MIT",
   "dependencies": {
-    "devcert": "^1.2.2",
     "express": "^4.18.1",
     "fill-in": "^1.0.2",
     "html-sed": "^1.0.0",
