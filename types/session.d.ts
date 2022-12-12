@@ -21,6 +21,10 @@ interface ResponseFilter {
 }
 
 interface Session {
+    clientRequest: http.IncomingMessage;
+    clientResponse: http.ServerResponse;
+    serverRequest: http.ClientRequest;
+    serverResponse: http.IncomingMessage;
     addRequestFilter(filterOrCondition: RequestFilter | RequestCondition,
                      requestProcessor: RequestProcessor | null,
                      bodyFilter: stream.Transform | null);

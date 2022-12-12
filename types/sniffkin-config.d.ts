@@ -36,6 +36,10 @@ interface NetworkConfig {
 interface SniffkinProxyConfig {
     port: number;
     sslCaDir: string;
+    bodyStore: {
+        enabled: boolean;
+        contentType: Array<string>;
+    };
 }
 
 interface SniffkinServerConfig {
