@@ -1,10 +1,12 @@
+#!/usr/bin/env node
+
 import path from 'path';
 import fs from 'fs';
 import { Server } from '../lib/server.js';
 import { logger } from '../lib/logger.js';
 import { createConfig } from '../lib/cli/create-config.js';
 
-const SNIFF_CONFIG = 'sniff.config.js';
+const SNIFF_CONFIG = 'sniff.config.mjs';
 
 async function main() {
   if (process.argv[2] == 'init') {
