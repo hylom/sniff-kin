@@ -2,6 +2,7 @@
 
 import path from 'path';
 import fs from 'fs';
+import read from 'read';
 import { Server } from '../lib/server.js';
 import { logger } from '../lib/logger.js';
 import { createConfig } from '../lib/cli/create-config.js';
@@ -16,6 +17,18 @@ async function main() {
   start();
 }
 
+async function promisedRead(option) {
+  return new Promise((resolve, reject) => {
+    read(option, (error, result, isDefault) => {
+      if (error) {
+        reject(error);
+        return;
+      }
+      resolve({ result, isDefault, });
+    });
+  });
+}
+
 async function start() {
   const configPath = path.join(process.cwd(), SNIFF_CONFIG);
   try {
@@ -25,9 +38,17 @@ async function start() {
       process.exit(10);
     }
   } catch (err) {
-    logger.error(`${SNIFF_CONFIG} is not exists!`);
-    logger.info(`note: you can create ${SNIFF_CONFIG} with \`init\` subcommand.`);
-    process.exit(11);
+    const prompt = `${SNIFF_CONFIG} not found. Create it? (yes/no):`;
+    const { result, isDefault } = await promisedRead({ prompt, default: 'yes', edit: true, });
+    const res = result.toLowerCase();
+    if (res == 'yes' || res == 'y') {
+      await createConfig();
+      // restart start() process
+      return start();
+    } else {
+      logger.info(`note: you can create ${SNIFF_CONFIG} with \`init\` subcommand.`);
+      process.exit(11);
+    }
   }
 
   import(configPath)

@@ -9,7 +9,9 @@
     "start": "node bin/sniffkin.js",
     "init": "node bin/sniffkin.js init"
   },
-  "keywords": [ "network" ],
+  "keywords": [
+    "network"
+  ],
   "author": {
     "name": "hylom (Hiromichi Matsushima)",
     "email": "hylom@hylom.net"
@@ -37,6 +39,7 @@
     "http-proxy": "^1.18.1",
     "morgan": "^1.10.0",
     "pouchdb": "^7.3.0",
-    "qrcode": "^1.5.1"
+    "qrcode": "^1.5.1",
+    "read": "^1.0.7"
   }
 }
