@@ -6,6 +6,7 @@ import read from 'read';
 import { Server } from '../lib/server.js';
 import { logger } from '../lib/logger.js';
 import { createConfig } from '../lib/cli/create-config.js';
+import opener from 'opener';
 
 const SNIFF_CONFIG = 'sniff.config.mjs';
 
@@ -14,7 +15,13 @@ async function main() {
     await createConfig();
     return;
   }
-  start();
+  try {
+    const server = await start();
+    const url = `${server.webServer.getLocalBaseUrl()}/`;
+    opener(url);
+  } catch (err) {
+    logger.error(err);
+  };
 }
 
 async function promisedRead(option) {
@@ -51,14 +58,12 @@ async function start() {
     }
   }
 
-  import(configPath)
-    .then(m => startServer(m.config))
-    .catch(err => {
-      logger.error(err);
-    });
+  const m = await import(configPath);
+  const server = await startServer(m.config);
+  return server;
 }
 
-function startServer(config) {
+async function startServer(config) {
   logger.info('sniffkin starting...');
   logger.debug(config);
   const server = new Server(config);
@@ -68,11 +73,8 @@ function startServer(config) {
     server.stop();
   });
 
-  try {
-    server.start();
-  } catch (err) {
-    console.log(err);
-  }
+  await server.start();
+  return server;
 }
 
 main();
