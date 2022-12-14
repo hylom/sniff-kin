@@ -55,7 +55,7 @@ export function ConnectionLogConsole() {
 
   return (
     <div className="ConnectionLogConsole container mx-auto px-1 w-auto">
-      <div className="sticky top-0 bg-white">
+      <div className="sticky top-0 bg-white z-0 border-2">
         {detailedLog}
       </div>
       <LogList logs={logs} onSelectLog={onSelectLog}/>

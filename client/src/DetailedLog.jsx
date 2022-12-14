@@ -55,7 +55,7 @@ export function DetailedLog(props) {
   });
 
   return (
-    <div className="w-full text-sm py-4">
+    <div className="w-full text-sm pb-4">
       <Expandable title={titles.general}>
         <ul>{generalItems}</ul>
       </Expandable>

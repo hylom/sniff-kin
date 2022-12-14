@@ -18,7 +18,7 @@ export function DropDown(props) {
       <div className="cursor-pointer" onClick={toggleDropDown}>
         {props.title}
       </div>
-      <div className="relative">
+      <div className={"relative " + props.className}>
         {children}
       </div>
     </div>
